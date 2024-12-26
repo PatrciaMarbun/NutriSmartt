@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:program/page/auth/home.dart';
+import 'package:program/page/auth/chat.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,6 +18,8 @@ class MyApp extends StatelessWidget {
 }
 
 class BookingScreen extends StatelessWidget {
+  const BookingScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +28,7 @@ class BookingScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -38,14 +42,14 @@ class BookingScreen extends StatelessWidget {
             Center(
               child: Column(
                 children: [
-                  Text(
+                  const Text(
                     "Nutritionist Details",
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
                     children: [
                       // Kotak profil berbentuk persegi dengan gambar dari assets
@@ -66,8 +70,8 @@ class BookingScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(width: 16),
-                      Column(
+                      const SizedBox(width: 16),
+                      const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
@@ -98,7 +102,7 @@ class BookingScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
@@ -106,26 +110,26 @@ class BookingScreen extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      padding:
-                          EdgeInsets.symmetric(vertical: 14, horizontal: 32),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 14, horizontal: 32),
                     ),
-                    child: Text(
+                    child: const Text(
                       "Appointment Date",
                       style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   Container(
-                    padding: EdgeInsets.all(24),
+                    padding: const EdgeInsets.all(24),
                     decoration: BoxDecoration(
                       color: Colors.grey[200],
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    child: Column(
+                    child: const Column(
                       children: [
                         Icon(
                           Icons.check_circle,
-                          color: const Color.fromARGB(255, 70, 123, 71),
+                          color: Color.fromARGB(255, 70, 123, 71),
                           size: 80,
                         ),
                         SizedBox(height: 20),
@@ -144,8 +148,8 @@ class BookingScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 30),
-                  Wrap(
+                  const SizedBox(height: 30),
+                  const Wrap(
                     spacing: 16,
                     runSpacing: 16,
                     children: [
@@ -157,14 +161,14 @@ class BookingScreen extends StatelessWidget {
                       TimeSlotButton(time: "18:00 PM"),
                     ],
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   ElevatedButton(
                     onPressed: () {
                       // Navigasi ke halaman HomeIvan setelah tombol DONE ditekan
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => HomeScreen(),
+                          builder: (context) => ChatScreen(),
                         ),
                       );
                     },
@@ -173,10 +177,10 @@ class BookingScreen extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
                       ),
-                      padding:
-                          EdgeInsets.symmetric(vertical: 14, horizontal: 32),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 14, horizontal: 32),
                     ),
-                    child: Text(
+                    child: const Text(
                       "DONE",
                       style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
@@ -194,7 +198,7 @@ class BookingScreen extends StatelessWidget {
 class TimeSlotButton extends StatelessWidget {
   final String time;
 
-  const TimeSlotButton({Key? key, required this.time}) : super(key: key);
+  const TimeSlotButton({super.key, required this.time});
 
   @override
   Widget build(BuildContext context) {
@@ -208,7 +212,7 @@ class TimeSlotButton extends StatelessWidget {
       child: Center(
         child: Text(
           time,
-          style: TextStyle(fontSize: 16),
+          style: const TextStyle(fontSize: 16),
         ),
       ),
     );

@@ -42,7 +42,7 @@ class LoginPasienPage extends StatelessWidget {
             const SizedBox(height: 8),
             TextFormField(
               decoration: InputDecoration(
-                hintText: 'ivan@gmail.com',
+                hintText: 'email@gmail.com',
                 prefixIcon: Icon(Icons.email_outlined),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(30),

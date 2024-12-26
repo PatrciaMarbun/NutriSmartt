@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:program/page/auth/PossibleDisease.dart';
 import 'package:program/page/auth/appoitment.dart';
 import 'package:program/page/auth/drugs.dart';
 import 'package:program/page/auth/groupchat.dart';
-import 'package:program/page/auth/possible.dart';
 import 'package:program/page/auth/profile.dart';
 import 'package:program/page/auth/notification.dart';
 import 'package:program/page/auth/chat.dart';
@@ -18,6 +18,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: HomeScreen(),
+      theme: ThemeData(
+        primaryColor: Colors.green[300],
+        colorScheme: ColorScheme.light(
+          primary: Colors.green[300]!, // primary color
+          secondary: Colors.green[600]!, // secondary color
+        ),
+      ),
     );
   }
 }
@@ -29,14 +36,105 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
-  TextEditingController _textController = TextEditingController();
+  final TextEditingController _textController = TextEditingController();
+
+  final List<Map<String, dynamic>> dataset = [
+    {
+      "keluhan":
+          "Saya sering merasa sakit kepala yang sangat menyakitkan, terutama di satu sisi kepala saya.",
+      "penyakit": [
+        "Migrain: Sakit kepala parah yang biasanya terjadi di satu sisi kepala.",
+        "Sinusitis: Peradangan pada sinus yang menyebabkan sakit kepala dan tekanan di wajah.",
+        "Hipertensi: Tekanan darah tinggi yang dapat menyebabkan sakit kepala.",
+        "Dehidrasi: Kekurangan cairan dalam tubuh yang dapat menyebabkan sakit kepala.",
+        "Tumor Otak: Pertumbuhan sel abnormal di otak yang dapat menyebabkan sakit kepala."
+      ],
+      "nutrisi": [
+        "Konsumsi makanan kaya magnesium seperti kacang-kacangan dan sayuran hijau.",
+        "Minum banyak air.",
+        "Hindari makanan tinggi garam.",
+        "Konsumsi buah-buahan kaya vitamin C seperti jeruk dan kiwi.",
+        "Konsumsi makanan rendah lemak jenuh seperti ikan dan sayuran."
+      ]
+    },
+    {
+      "keluhan":
+          "Saya merasa mual dan perut saya terasa kembung setelah makan makanan berat.",
+      "penyakit": [
+        "Gastritis: Peradangan pada lapisan perut yang menyebabkan rasa mual.",
+        "GERD (Gastroesophageal Reflux Disease): Refluks asam lambung yang menyebabkan mual.",
+        "Dispepsia: Gangguan pencernaan yang menyebabkan rasa tidak nyaman di perut.",
+        "Intoleransi Laktosa: Ketidakmampuan tubuh untuk mencerna laktosa yang menyebabkan kembung.",
+        "Infeksi Saluran Pencernaan: Infeksi bakteri atau virus yang menyebabkan gangguan pencernaan."
+      ],
+      "nutrisi": [
+        "Hindari makanan berlemak dan pedas.",
+        "Konsumsi makanan yang mudah dicerna seperti nasi putih dan sup kaldu.",
+        "Minum teh jahe untuk meredakan mual.",
+        "Konsumsi makanan kaya probiotik seperti yogurt.",
+        "Makan dalam porsi kecil namun sering."
+      ]
+    },
+    {
+      "keluhan":
+          "Saya sering merasa sesak napas setelah beraktivitas ringan seperti naik tangga.",
+      "penyakit": [
+        "Asma: Gangguan pernapasan yang menyebabkan sesak napas.",
+        "Penyakit Jantung: Masalah pada jantung yang dapat menyebabkan sesak napas.",
+        "Pneumonia: Infeksi paru-paru yang menyebabkan kesulitan bernapas.",
+        "Emboli Paru: Penyumbatan arteri paru-paru yang menyebabkan sesak napas.",
+        "COPD (Chronic Obstructive Pulmonary Disease): Penyakit paru-paru kronis yang menyebabkan sesak napas."
+      ],
+      "nutrisi": [
+        "Konsumsi makanan kaya antioksidan seperti beri dan sayuran hijau.",
+        "Hindari konsumsi makanan yang memicu peradangan, seperti makanan olahan.",
+        "Konsumsi makanan kaya omega-3 seperti ikan salmon.",
+        "Minum banyak air untuk menjaga tubuh tetap terhidrasi.",
+        "Konsumsi makanan yang kaya vitamin C untuk mendukung sistem pernapasan."
+      ]
+    },
+    {
+      "keluhan": "Saya merasa kelelahan dan lesu meskipun sudah cukup tidur.",
+      "penyakit": [
+        "Anemia: Kekurangan sel darah merah yang dapat menyebabkan kelelahan.",
+        "Hipotiroidisme: Kondisi di mana kelenjar tiroid kurang aktif, menyebabkan kelelahan.",
+        "Sleep Apnea: Gangguan tidur yang menyebabkan tidur tidak nyenyak.",
+        "Depresi: Gangguan mental yang dapat menyebabkan kelelahan dan kurangnya energi.",
+        "Diabetes: Kadar gula darah yang tidak terkontrol dapat menyebabkan kelelahan."
+      ],
+      "nutrisi": [
+        "Konsumsi makanan kaya zat besi seperti bayam dan daging merah.",
+        "Konsumsi makanan yang mengandung vitamin D dan B12.",
+        "Konsumsi makanan dengan indeks glikemik rendah untuk menjaga kadar gula darah.",
+        "Minum air putih untuk mencegah dehidrasi.",
+        "Hindari konsumsi kafein berlebihan yang dapat mengganggu tidur."
+      ]
+    },
+    {
+      "keluhan":
+          "Saya merasa nyeri pada bagian punggung bawah setelah duduk dalam waktu lama.",
+      "penyakit": [
+        "Hernia: Kelainan pada tulang belakang yang dapat menyebabkan nyeri punggung.",
+        "Sciatica: Nyeri yang menjalar ke kaki akibat tekanan pada saraf sciatic.",
+        "Osteoarthritis: Peradangan pada sendi yang dapat menyebabkan nyeri punggung.",
+        "Fraktur Tulang Belakang: Patah tulang pada tulang belakang yang menyebabkan nyeri.",
+        "Spondylolisthesis: Kondisi di mana satu tulang belakang bergeser dari posisi normal."
+      ],
+      "nutrisi": [
+        "Konsumsi makanan kaya kalsium seperti susu dan keju.",
+        "Konsumsi makanan kaya vitamin D untuk membantu penyerapan kalsium.",
+        "Hindari makanan tinggi garam yang dapat menyebabkan penurunan kepadatan tulang.",
+        "Konsumsi makanan kaya magnesium untuk kesehatan otot dan tulang.",
+        "Perbanyak konsumsi ikan berlemak seperti salmon untuk mendukung kesehatan tulang."
+      ]
+    },
+  ];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
 
-    // Navigasi berdasarkan indeks
     switch (index) {
       case 0:
         Navigator.push(
@@ -51,8 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
         );
         break;
       case 2:
-        // Tetap di halaman Home, tidak perlu navigasi
-        break;
+        break; // Stay on Home Screen
       case 3:
         Navigator.push(
           context,
@@ -83,15 +180,11 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0,
         actions: [
           IconButton(
-            icon: Icon(Icons.exit_to_app, color: Colors.black), // Ikon exit
+            icon: Icon(Icons.exit_to_app, color: Colors.black),
             onPressed: () {
-              // Tindakan untuk logout atau keluar dari aplikasi
-              // Mengarahkan ke halaman utama pengguna (misalnya HomePage)
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        UserPage()), // Ganti dengan halaman utama pengguna
+                MaterialPageRoute(builder: (context) => UserPage()),
               );
             },
           ),
@@ -100,31 +193,28 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => NotificationsPage(),
-                ),
+                MaterialPageRoute(builder: (context) => NotificationsPage()),
               );
             },
           ),
         ],
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(18),
+        padding: const EdgeInsets.all(18),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Header dengan avatar dan sapaan
             Row(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 30,
                   backgroundImage: AssetImage('assets/images/ivan.png'),
                 ),
-                SizedBox(width: 12),
+                const SizedBox(width: 12),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Welcome Alexa',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -137,196 +227,97 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 20),
-            // Tombol pencarian
-            Container(
-              width: double.infinity,
-              child: ElevatedButton.icon(
-                onPressed: () {},
-                icon:
-                    SizedBox.shrink(), // Menghapus ikon, jika tidak diperlukan
-                label: Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.start, // Menyusun teks di kiri
-                  children: [
-                    Text(
-                      'Enter Symptoms',
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                  ],
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
-                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 20),
-
-            // TextField untuk memasukkan gejala secara manual
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Possible Disease',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             TextField(
-              controller:
-                  _textController, // Controller untuk menyimpan teks yang diketik
-              decoration: InputDecoration(
+              controller: _textController,
+              decoration: const InputDecoration(
                 hintText: 'Type Here ...',
                 border: OutlineInputBorder(),
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 8, horizontal: 12),
               ),
-              style: TextStyle(fontSize: 14, color: Colors.black),
+              style: const TextStyle(fontSize: 14, color: Colors.black),
               maxLines: 5,
             ),
-            SizedBox(height: 20),
-
-            // Possible Disease Box
+            const SizedBox(height: 20),
             Align(
               alignment: Alignment.bottomRight,
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                  vertical: 0,
-                  horizontal: 8,
-                ),
-                width: 100,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => PossibleDiseasePage()),
+              child: ElevatedButton(
+                onPressed: () {
+                  final inputKeluhan = _textController.text.trim();
+
+                  if (inputKeluhan.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                          content: Text("Masukkan keluhan terlebih dahulu!")),
                     );
-                  },
-                  child: Text(
-                    'Entry',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.white,
+                    return;
+                  }
+
+                  final diagnosis = dataset.firstWhere(
+                    (data) => data["keluhan"]
+                        .toLowerCase()
+                        .contains(inputKeluhan.toLowerCase()),
+                    orElse: () => {},
+                  );
+
+                  if (diagnosis.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                          content: Text(
+                              "Diagnosis tidak ditemukan untuk keluhan ini.")),
+                    );
+                    return;
+                  }
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          PossibleDiseasescreen(diagnosis: diagnosis),
                     ),
-                  ),
-                ),
+                  );
+                },
+                child: const Text("Entry"),
               ),
             ),
-
-            // Bagian "Manage Packages"
+            const SizedBox(height: 10),
             Text(
               'Manage Packages',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: -0),
+            SizedBox(height: 8),
+            // Manage Packages Section with Cards/Boxes
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Card 1: Article
-                Container(
-                  width: 120,
-                  height: 140,
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Color(0xFFD9D9D9),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/images/objek.png',
-                        width: 70,
-                        height: 70,
-                        fit: BoxFit.contain,
-                      ),
-                      SizedBox(height: 8),
-                      Text(
-                        'Article',
-                        style: TextStyle(color: Colors.black),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-                // Card 2: Drugs
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => DrugsScreen()),
-                    );
-                  },
-                  child: Container(
-                    width: 120,
-                    height: 140,
-                    padding: EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Color(0xFFD9D9D9),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/images/pil.png',
-                          width: 70,
-                          height: 70,
-                          fit: BoxFit.contain,
-                        ),
-                        SizedBox(height: 8),
-                        Text(
-                          'Nutrient',
-                          style: TextStyle(color: Colors.black),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-
-                // Card 3: Nutrionist
-                Container(
-                  width: 120,
-                  height: 140,
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Color(0xFFD9D9D9),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/images/ivann.png',
-                        width: 80, // Ikon lebih besar
-                        height: 80,
-                        fit: BoxFit.contain,
-                      ),
-                      SizedBox(height: 6),
-                      Text(
-                        'Nutrionist',
-                        style: TextStyle(color: Colors.black),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
+                buildCard('assets/images/objek.png', 'Article', onTap: () {
+                  // Handle Article tap
+                }),
+                buildCard('assets/images/pil.png', 'Nutrient', onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => DrugsScreen()));
+                }),
+                buildCard('assets/images/ivann.png', 'Nutritionist', onTap: () {
+                  // Handle Nutritionist tap
+                }),
               ],
             ),
-            SizedBox(height: -0),
+            const SizedBox(height: 20),
+            Divider(),
+            const SizedBox(height: 12),
             // Upcoming Appointments Section
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Upcoming Appointments',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  'Upcoming Appoinments',
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                 ),
                 TextButton(
                   onPressed: () {
@@ -367,24 +358,25 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         Text(
                           '05 Nov, 2024',
-                          style: TextStyle(color: Colors.grey[700]),
+                          style: TextStyle(color: Colors.white),
                         ),
                       ],
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AppointmentsScreen()),
+                      );
+                    },
+                    child: Text("View Appoinment"),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
+                      backgroundColor: Colors.black, // Warna latar belakang
+                      foregroundColor: Colors.white, // Warna teks atau ikon
                     ),
-                    child: Text('View Appointment',
-                        style: TextStyle(color: Colors.white)),
-                  ),
+                  )
                 ],
               ),
             ),
@@ -399,7 +391,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.group, size: 30, color: Colors.black),
-            label: 'Community',
+            label: 'Group Chat',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.home, size: 30, color: Colors.black),
@@ -407,7 +399,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.chat, size: 30, color: Colors.black),
-            label: 'Messages',
+            label: 'Chat',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person, size: 30, color: Colors.black),
@@ -415,9 +407,41 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.green,
-        unselectedItemColor: Colors.black,
         onTap: _onItemTapped,
+        selectedItemColor: Colors.green[300],
+      ),
+    );
+  }
+
+  Widget buildCard(String imagePath, String title, {void Function()? onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        // Menempatkan gambar dan teks dalam Column
+        children: [
+          Container(
+            width: 110,
+            height: 100,
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.circular(12),
+              image: DecorationImage(
+                image: AssetImage(imagePath),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          SizedBox(height: 5),
+          Text(
+            title,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -83,8 +83,7 @@ class _PossibleDiseasePageState extends State<PossibleDiseasePage> {
               children: [
                 CircleAvatar(
                   radius: 30,
-                  backgroundImage: AssetImage(
-                      'assets/images/ivan.png'), // Ganti dengan path gambar avatar
+                  backgroundImage: AssetImage('assets/images/ivan.png'),
                 ),
                 const SizedBox(width: 16),
                 Column(
@@ -93,7 +92,7 @@ class _PossibleDiseasePageState extends State<PossibleDiseasePage> {
                     Text(
                       'Welcome Alexa',
                       style: TextStyle(
-                        color: Colors.white, // Teks putih agar kontras
+                        color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),

@@ -199,7 +199,7 @@ class _HomeScreenState extends State<DoctorHome> {
                     ],
                   ),
                 ),
-                // Card 1: Article
+                // Card 3: Article
                 Container(
                   width: 120,
                   height: 100,

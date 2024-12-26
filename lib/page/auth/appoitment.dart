@@ -11,8 +11,8 @@ class AppointmentsScreen extends StatefulWidget {
 }
 
 class _AppointmentsScreenState extends State<AppointmentsScreen> {
-  int _selectedIndex = 2; // Index untuk BottomNavigationBar
-  int _tabIndex = 0; // Menyimpan tab yang aktif (0 = Upcoming, 1 = Past)
+  int _selectedIndex = 2;
+  int _tabIndex = 0;
 
   // Fungsi untuk menangani tab
   void _onItemTapped(int index) {
